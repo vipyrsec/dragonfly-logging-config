@@ -5,7 +5,10 @@ description = ""
 authors = [
     { name = "Vipyr Security Developers", email = "support@vipyrsec.com" },
 ]
-dependencies = ["structlog>=24.1.0"]
+dependencies = [
+    "structlog>=24.1.0",
+    "structlog-sentry>=2.1.0",
+]
 requires-python = ">=3.11"
 readme = "README.md"
 license = { text = "MIT" }

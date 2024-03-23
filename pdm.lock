@@ -6,7 +6,17 @@ groups = ["default", "lint"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:d22ec8de7d6d0d4d1b089ecfc19c45aae9fb29195727558862340f03e5df6f05"
+content_hash = "sha256:2c1bd6e71c87cfbac7a3459215b2b02beed0576ffbc1b2d38caa0e47ae8474fb"
+
+[[package]]
+name = "certifi"
+version = "2024.2.2"
+requires_python = ">=3.6"
+summary = "Python package for providing Mozilla's CA Bundle."
+files = [
+    {file = "certifi-2024.2.2-py3-none-any.whl", hash = "sha256:dc383c07b76109f368f6106eee2b593b04a011ea4d55f652c6ca24a754d1cdd1"},
+    {file = "certifi-2024.2.2.tar.gz", hash = "sha256:0569859f95fc761b18b45ef421b1290a0f65f147e92a1e5eb3e635f9a5e4e66f"},
+]
 
 [[package]]
 name = "cfgv"
@@ -185,6 +195,19 @@ files = [
 ]
 
 [[package]]
+name = "sentry-sdk"
+version = "1.43.0"
+summary = "Python client for Sentry (https://sentry.io)"
+dependencies = [
+    "certifi",
+    "urllib3>=1.26.11; python_version >= \"3.6\"",
+]
+files = [
+    {file = "sentry-sdk-1.43.0.tar.gz", hash = "sha256:41df73af89d22921d8733714fb0fc5586c3461907e06688e6537d01a27e0e0f6"},
+    {file = "sentry_sdk-1.43.0-py2.py3-none-any.whl", hash = "sha256:8d768724839ca18d7b4c7463ef7528c40b7aa2bfbf7fe554d5f9a7c044acfd36"},
+]
+
+[[package]]
 name = "setuptools"
 version = "69.2.0"
 requires_python = ">=3.8"
@@ -202,6 +225,30 @@ summary = "Structured Logging for Python"
 files = [
     {file = "structlog-24.1.0-py3-none-any.whl", hash = "sha256:3f6efe7d25fab6e86f277713c218044669906537bb717c1807a09d46bca0714d"},
     {file = "structlog-24.1.0.tar.gz", hash = "sha256:41a09886e4d55df25bdcb9b5c9674bccfab723ff43e0a86a1b7b236be8e57b16"},
+]
+
+[[package]]
+name = "structlog-sentry"
+version = "2.1.0"
+requires_python = ">=3.7,<4.0"
+summary = "Sentry integration for structlog"
+dependencies = [
+    "sentry-sdk",
+    "structlog",
+]
+files = [
+    {file = "structlog_sentry-2.1.0-py3-none-any.whl", hash = "sha256:8f631fc4cf9890f8ea368f057861b62ceef30dd75726a85706869807926e22d0"},
+    {file = "structlog_sentry-2.1.0.tar.gz", hash = "sha256:ee4fb04a381f25570017dd26345ea15b6461cbf87ae0a315e20ddd822ad4256b"},
+]
+
+[[package]]
+name = "urllib3"
+version = "2.2.1"
+requires_python = ">=3.8"
+summary = "HTTP library with thread-safe connection pooling, file post, and more."
+files = [
+    {file = "urllib3-2.2.1-py3-none-any.whl", hash = "sha256:450b20ec296a467077128bff42b73080516e71b56ff59a60a02bef2232c4fa9d"},
+    {file = "urllib3-2.2.1.tar.gz", hash = "sha256:d0570876c61ab9e520d776c38acbbb5b05a776d3f9ff98a5c8fd5162a444cf19"},
 ]
 
 [[package]]
