@@ -3,23 +3,22 @@ name = "dragonfly-logging-config"
 version = "0.1.0"
 description = ""
 authors = [
-    {name = "Vipyr Security Developers",email = "support@vipyrsec.com"},
+    { name = "Vipyr Security Developers", email = "support@vipyrsec.com" },
 ]
-dependencies = [
-    "structlog>=24.1.0",
-]
+dependencies = ["structlog>=24.1.0"]
 requires-python = ">=3.11"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
 [tool]
 [tool.pdm]
 [tool.pdm.dev-dependencies]
-lint = [
-    "pre-commit>=3.6.2",
-    "ruff>=0.3.4",
-    "pyright>=1.1.355",
-]
+lint = ["pre-commit>=3.6.2", "ruff>=0.3.4", "pyright>=1.1.355"]
+
+[tool.pdm.scripts]
+format = { shell = "ruff format" }
+lint = { shell = "pyright; ruff check ." }
+precommit = { shell = "pre-commit run --all-files" }
 
 [tool.ruff]
 line-length = 120
