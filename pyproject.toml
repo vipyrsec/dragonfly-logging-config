@@ -1,9 +1,9 @@
 [project]
 name = "dragonfly-logging-config"
 version = "0.1.0"
-description = ""
+description = "Shared logging configuration for Dragonfly codebases"
 authors = [
-    { name = "Vipyr Security Developers", email = "support@vipyrsec.com" },
+    { name = "Vipyr Security", email = "support@vipyrsec.com" },
 ]
 dependencies = [
     "structlog>=24.1.0",
@@ -18,7 +18,11 @@ license = { text = "MIT" }
 [tool]
 [tool.pdm]
 [tool.pdm.dev-dependencies]
-lint = ["pre-commit>=3.6.2", "ruff>=0.3.4", "pyright>=1.1.355"]
+lint = [
+    "pre-commit>=3.6.2",
+    "ruff>=0.3.4",
+    "pyright>=1.1.355"
+]
 
 [tool.pdm.scripts]
 format = { shell = "ruff format" }
