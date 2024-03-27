@@ -27,7 +27,7 @@ lint = [
 [tool.pdm.scripts]
 format = { shell = "ruff format" }
 lint = { shell = "pyright; ruff check ." }
-precommit = { shell = "pre-commit run --all-files" }
+pre-commit = { shell = "pre-commit run --all-files" }
 
 [tool.ruff]
 line-length = 120
