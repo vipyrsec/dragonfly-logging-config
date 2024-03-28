@@ -1,5 +1,5 @@
 [project]
-name = "dragonfly-logging-config"
+name = "dragonfly_logging_config"
 version = "0.1.0"
 description = "Shared logging configuration for Dragonfly codebases"
 authors = [
