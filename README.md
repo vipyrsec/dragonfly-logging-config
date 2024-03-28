@@ -1,2 +1,3 @@
 # dragonfly-logging-config
-Shared logging configuration for Dragonfly
+
+Shared logging configuration for dragonfly
