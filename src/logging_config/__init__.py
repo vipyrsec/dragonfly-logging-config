@@ -59,11 +59,3 @@ def configure_logger(config: dict):
         wrapper_class=structlog.stdlib.BoundLogger,
         cache_logger_on_first_use=True,
     )
-
-    # Disable uvicorn's logging
-    for _log in ["uvicorn", "uvicorn.error"]:
-        logging.getLogger(_log).handlers.clear()
-        logging.getLogger(_log).propagate = True
-
-    logging.getLogger("uvicorn.access").handlers.clear()
-    logging.getLogger("uvicorn.access").propagate = False
