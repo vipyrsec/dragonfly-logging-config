@@ -3,8 +3,6 @@ import logging.config
 
 import structlog
 
-from structlog_sentry import SentryProcessor
-
 
 def configure_logger(config: dict):
     # Define the shared processors, regardless of whether API is running in prod or dev.
@@ -13,7 +11,6 @@ def configure_logger(config: dict):
         structlog.stdlib.add_log_level,
         structlog.stdlib.PositionalArgumentsFormatter(),
         structlog.stdlib.ExtraAdder(),
-        SentryProcessor(event_level=logging.ERROR, level=logging.DEBUG),
         structlog.processors.format_exc_info,
         structlog.processors.TimeStamper(fmt="iso"),
         structlog.processors.StackInfoRenderer(),
