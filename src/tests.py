@@ -1,7 +1,5 @@
 import io
-from operator import itemgetter
 import re
-import json
 import structlog
 import unittest
 
