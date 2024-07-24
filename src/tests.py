@@ -1,14 +1,8 @@
 import io
-import re
 import structlog
 import unittest
 
 from logging_config import configure_logger
-
-
-TIMESTAMP_RE = re.compile(
-    r"([1-9]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2]\d|3[0-1])T([0-4]\d|5[0-9]):([0-4]\d|5[0-9]):([0-4]\d|5[0-9])(\.\d{3,})?Z"
-)
 
 
 class TestLogging(unittest.TestCase):
