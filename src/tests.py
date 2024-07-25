@@ -78,7 +78,6 @@ class TestLogging(unittest.TestCase):
         def additional_processor(
             logger: logging.Logger, method_name: str, event_dict: dict[str, Any]
         ) -> dict[str, Any]:
-            """Add request id to log message."""
             event_dict["testing"] = "testing"
             return event_dict
 
