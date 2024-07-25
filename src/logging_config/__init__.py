@@ -1,10 +1,12 @@
 import logging
 import logging.config
+from typing import Any
+from typing import Optional
 
 import structlog
 
 
-def configure_logger(config: dict):
+def configure_logger(config: dict[str, Any], additional_processors: Optional[list[Any]] = None):
     # Define the shared processors, regardless of whether API is running in prod or dev.
     shared_processors: list[structlog.types.Processor] = [
         structlog.contextvars.merge_contextvars,
@@ -23,6 +25,9 @@ def configure_logger(config: dict):
             }
         ),
     ]
+
+    if additional_processors:
+        shared_processors.extend(additional_processors)
 
     config.update(
         {
