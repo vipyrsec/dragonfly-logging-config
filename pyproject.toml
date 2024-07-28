@@ -1,6 +1,6 @@
 [project]
 name = "dragonfly-logging-config"
-version = "1.1.0"
+version = "1.2.0"
 description = "Shared logging configuration for Dragonfly codebases"
 authors = [{ name = "Vipyr Security", email = "support@vipyrsec.com" }]
 dependencies = [

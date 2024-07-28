@@ -16,7 +16,7 @@ class LoggingMiddleware:
             await self.app(scope, receive, send)
             return
 
-        info: Message = {}
+        info: Message = {"response": {}}
 
         async def inner_send(message: Message) -> None:
             if message["type"] == "http.response.start":
