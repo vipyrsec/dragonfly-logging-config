@@ -1,25 +1,98 @@
+---
+default_language_version:
+  python: python3
+  node: system
+
 repos:
+  - repo: meta
+    hooks:
+      - id: check-hooks-apply
+      - id: check-useless-excludes
+
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: cef0300fd0fc4d2a87a85fa2093c6b283ea36f4b  # frozen: v5.0.0
     hooks:
-      - id: check-case-conflict
+      - id: check-added-large-files
       - id: check-merge-conflict
-      - id: check-toml
-      - id: check-yaml
-      - id: check-json
-      - id: trailing-whitespace
-        args: [ --markdown-linebreak-ext=md ]
-      - id: mixed-line-ending
-        args: [ --fix=lf ]
       - id: end-of-file-fixer
+      - id: name-tests-test
+        args:
+          - --pytest-test-first
+      - id: trailing-whitespace
+        args:
+          - --markdown-linebreak-ext=md
+        exclude: \.gitignore
 
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.4
+  - repo: local
     hooks:
-    - id: ruff
-    - id: ruff-format
+      - id: ruff-format
+        name: Ruff (Format)
+        description: Format Python files
+        language: system
+        entry: pdm run format
+        types_or:
+          - python
+          - pyi
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.352
+      - id: ruff-lint
+        name: Ruff (Lint)
+        description: Lint Python files
+        language: system
+        entry: pdm run lint
+        args:
+          - --exit-non-zero-on-fix
+        types_or:
+          - python
+          - pyi
+
+      - id: pyright
+        name: Pyright
+        description: Type-check Python files
+        language: system
+        entry: pdm run type-check
+        types_or:
+          - python
+          - pyi
+        pass_filenames: false
+
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: cb3c2be894b151dff143b1baf6acbd55f2b7faed  # frozen: 0.30.0
     hooks:
-    - id: pyright
+      - id: check-github-workflows
+
+  - repo: https://github.com/lyz-code/yamlfix
+    rev: 8072181c0f2eab9f2dd8db2eb3b9556d7cd0bd74  # frozen: 1.17.0
+    hooks:
+      - id: yamlfix
+        args:
+          - --config-file
+          - .yamlfix.toml
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: 81e9f98ffd059efe8aa9c1b1a42e5cce61b640c6  # frozen: v1.35.1
+    hooks:
+      - id: yamllint
+        args:
+          - --strict
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: 0d9fcb51a54f3b750b911c054b4bd1a590f1b592  # frozen: v0.43.0
+    hooks:
+      - id: markdownlint-fix
+
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: 23eab0f0eedcbedebff420f5fdfb284744adc7b3  # frozen: v0.9.3
+    hooks:
+      - id: taplo-format
+      - id: taplo-lint
+
+  - repo: https://github.com/sirwart/ripsecrets
+    rev: 033ec5192b738b6712701be920cba545c2775050  # frozen: v0.1.8
+    hooks:
+      - id: ripsecrets
+
+  - repo: https://github.com/crate-ci/typos
+    rev: 7735742fe15f92eb88e4660c70ae0184c4a57502  # frozen: v1.28.1
+    hooks:
+      - id: typos
+        args: []

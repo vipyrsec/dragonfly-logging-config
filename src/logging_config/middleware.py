@@ -1,17 +1,32 @@
+"""ASGI middleware for logging."""
+
 import time
 
 import structlog
-
 from asgi_correlation_id.context import correlation_id
 from fastapi import Request
-from starlette.types import ASGIApp, Scope, Receive, Send, Message
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 
 class LoggingMiddleware:
-    def __init__(self, app: ASGIApp):
+    """ASGI middleware for logging.
+
+    Attributes
+    ----------
+        app: The ASGI app to augment.
+    """
+
+    def __init__(self, app: ASGIApp) -> None:
         self.app = app
 
-    async def __call__(self, scope: Scope, receive: Receive, send: Send):
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        """Call the middleware.
+
+        Args:
+            scope: The scope of the request.
+            receive: The function to read the request data.
+            send: The function to write the response data.
+        """
         if scope["type"] != "http":
             await self.app(scope, receive, send)
             return

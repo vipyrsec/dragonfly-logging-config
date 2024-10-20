@@ -1,18 +1,16 @@
 import io
 import logging
-import structlog
 import unittest
 from typing import Any
+
+import structlog
 
 from logging_config import configure_logger
 
 
 class TestLogging(unittest.TestCase):
-    def test_log_output(self):
-        """
-        Test whether the log config is built successfully and the emitted logs are correct.
-        """
-
+    def test_log_output(self) -> None:
+        """Test whether the log config is built successfully and the emitted logs are correct."""
         f = io.StringIO()
 
         config = {
@@ -38,26 +36,20 @@ class TestLogging(unittest.TestCase):
         log.info("test")
         record = cf.logger.calls[0]
 
-        self.assertEqual(record.method_name, "info")
+        assert record.method_name == "info"
         args = record.args[0]
-        self.assertDictEqual(
-            args,
-            {
-                "event": "test",
-                "level": "info",
-                "timestamp": args["timestamp"],
-                "lineno": args["lineno"],
-                "filename": "tests.py",
-                "module": "tests",
-                "func_name": "test_log_output",
-            },
-        )
+        assert args == {
+            "event": "test",
+            "level": "info",
+            "timestamp": args["timestamp"],
+            "lineno": args["lineno"],
+            "filename": "test_logging.py",
+            "module": "test_logging",
+            "func_name": "test_log_output",
+        }
 
-    def test_additional_processors(self):
-        """
-        Test whether passing additional processors works correctly.
-        """
-
+    def test_additional_processors(self) -> None:
+        """Test whether passing additional processors works correctly."""
         f = io.StringIO()
 
         config = {
@@ -76,7 +68,9 @@ class TestLogging(unittest.TestCase):
         }
 
         def additional_processor(
-            logger: logging.Logger, method_name: str, event_dict: dict[str, Any]
+            _logger: logging.Logger,
+            _method_name: str,
+            event_dict: dict[str, Any],
         ) -> dict[str, Any]:
             event_dict["testing"] = "testing"
             return event_dict
@@ -90,4 +84,4 @@ class TestLogging(unittest.TestCase):
         log.info("test")
         record = cf.logger.calls[0]
 
-        self.assertEqual(record.args[0]["testing"], "testing")
+        assert record.args[0]["testing"] == "testing"

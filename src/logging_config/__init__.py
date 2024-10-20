@@ -1,12 +1,19 @@
+"""Shared logging configuration for Dragonfly codebases."""
+
 import logging
 import logging.config
 from typing import Any
-from typing import Optional
 
 import structlog
 
 
-def configure_logger(config: dict[str, Any], additional_processors: Optional[list[Any]] = None):
+def configure_logger(config: dict[str, Any], additional_processors: list[Any] | None = None) -> None:
+    """Configure the logger instance.
+
+    Args:
+        config: The configuration to be applied.
+        additional_processors: Any additional processors to be configured.
+    """
     # Define the shared processors, regardless of whether API is running in prod or dev.
     shared_processors: list[structlog.types.Processor] = [
         structlog.contextvars.merge_contextvars,
@@ -22,7 +29,7 @@ def configure_logger(config: dict[str, Any], additional_processors: Optional[lis
                 structlog.processors.CallsiteParameter.FUNC_NAME,
                 structlog.processors.CallsiteParameter.MODULE,
                 structlog.processors.CallsiteParameter.LINENO,
-            }
+            },
         ),
     ]
 
@@ -50,13 +57,13 @@ def configure_logger(config: dict[str, Any], additional_processors: Optional[lis
                     "foreign_pre_chain": shared_processors,
                 },
             },
-        }
+        },
     )
 
     logging.config.dictConfig(config)
 
     structlog.configure(
-        processors=shared_processors + [structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
+        processors=[*shared_processors, structlog.stdlib.ProcessorFormatter.wrap_for_formatter],
         logger_factory=structlog.stdlib.LoggerFactory(),
         wrapper_class=structlog.stdlib.BoundLogger,
         cache_logger_on_first_use=True,
