@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dragonfly-logging-config"
-version = "2.0.0"
+version = "2.1.0"
 description = "Shared logging configuration for Dragonfly codebases."
 authors = [{name = "Vipyr Security Developers", email = "support@vipyrsec.com"}]
 readme = "README.md"
