@@ -11,12 +11,16 @@ from starlette.types import ASGIApp, Message, Receive, Scope, Send
 class LoggingMiddleware:
     """ASGI middleware for logging.
 
-    Attributes
-    ----------
+    Attributes:
         app: The ASGI app to augment.
     """
 
     def __init__(self, app: ASGIApp) -> None:
+        """Initializes the middleware.
+
+        Args:
+            app: The ASGI application to instrument.
+        """
         self.app = app
 
     async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
