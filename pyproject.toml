@@ -27,7 +27,7 @@ classifiers = [
 ]
 
 requires-python = ">=3.13,<3.14"
-dependencies = ["asgi-correlation-id>=4.3.4", "fastapi-slim>=0.115.5", "structlog>=24.4.0"]
+dependencies = ["asgi-correlation-id>=4.3.4", "fastapi-slim>=0.129.1", "structlog>=25.5.0"]
 
   [project.urls]
   homepage = "https://vipyrsec.com/"
